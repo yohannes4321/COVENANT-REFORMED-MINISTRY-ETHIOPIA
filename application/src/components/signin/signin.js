@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import {
   SigninContainer,
   SigninWrapper,
@@ -9,7 +9,7 @@ import {
    
 } from "./SigninElements";
 import {ButtonBasic} from "../ButtonElements"
-const Signin = () => {
+const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -79,6 +79,16 @@ const Signin = () => {
               <Link to="/forgot_password" style={{ color: "#007bff", textDecoration: "none" }}>
                 Forgot your password?
               </Link>
+
+            </div>
+            <div style={{ textAlign: "center", marginTop: "15px" }}>
+            <p className="text-center mt-6 text-gray-600">
+              Have not Created Account ?   
+              <Link to="/signup" style={{ color: "#007bff", textDecoration: "none" }}>
+                  SignUp
+              </Link>
+              </p>
+              
             </div>
           </form>
         </SigninWrapper>
