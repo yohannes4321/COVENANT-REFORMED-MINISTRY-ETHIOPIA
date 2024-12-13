@@ -7,7 +7,7 @@ import SignupPage from "./pages/signup";
 import ForgetPassword from "./pages/forgetpassword";
 import Resetpasswordpage from "./pages/resetpassword";
 import AdminUpload from './pages/AdminUpload'; 
-import UserBooks  from './pages/UserBooks';
+import Displaybook  from './pages/displaybookfinal';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
@@ -21,7 +21,7 @@ function App() {
 <Route path="/forgot_password" element={<ForgetPassword/>} />
 <Route path="/reset_password/:id/:token" element={<Resetpasswordpage />} />
 <Route path="/admin/upload" element={<AdminUpload />} /> 
-<Route path="/books" element={<UserBooks />} />
+<Route path="/books" element={<Displaybook />} />
 
       </Routes>
       <ToastContainer />

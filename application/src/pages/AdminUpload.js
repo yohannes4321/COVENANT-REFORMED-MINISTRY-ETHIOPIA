@@ -105,12 +105,7 @@ const AdminUpload = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <label>Category</label>
-          <UploadInput
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+         
           <UploadButton type="submit">Upload</UploadButton>
         </UploadForm>
       </AdminContainer>
