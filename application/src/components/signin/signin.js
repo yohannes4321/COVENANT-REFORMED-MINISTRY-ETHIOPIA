@@ -1,99 +1,119 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate ,Link} from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+//import Context from '../context/index'; // Your Context file
+//import loginIcons from '../assest/signin.gif';
+//import SummaryApi from '../common/index'; // Your API setup
 import {
   SigninContainer,
   SigninWrapper,
   SigninP,
   SigninInput,
-   
 } from "./SigninElements";
-import {ButtonBasic} from "../ButtonElements"
-const SignInPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+import { ButtonBasic } from "../ButtonElements";
+const Signin = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [data, setData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  //const { fetchUserDetails } = useContext(Context); // Make sure Context is providing the fetchUserDetails
 
-  const handleSignin = async (e) => {
+  // Handle input change
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle form submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous error message
-
     try {
-      const response = await axios.post("http://localhost:8000/api/signin", {
-        email,
-        password,
+      const response = await fetch("http://localhost:8000/api/signin", {
+        method: 'POST', // Should be 'POST'
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include', // If you're using cookies for authentication
+        body: JSON.stringify(data), // Send email and password in body
       });
 
-      if (response.status === 200) {
-        // Save token in localStorage or cookies
-        const { token, user } = response.data.user;
-        localStorage.setItem("authToken", token);
-
-        // Navigate to the dashboard or another page
-        navigate("/dashboard");
+      const result = await response.json();
+      if (result.success) {
+        toast.success(result.message);
+        //fetchUserDetails(); // Fetch user details after login success
+        navigate('/'); // Redirect user to homepage or dashboard
+      } else {
+        toast.error(result.message);
       }
     } catch (error) {
-      if (error.response) {
-        // Error from server
-        setError(error.response.data.message || "Signin failed.");
-      } else {
-        // Network error
-        setError("Unable to connect to the server.");
-      }
+      console.error("Error during login:", error);
+      toast.error("Something went wrong!");
     }
   };
 
- 
-    return (
+  return (
+    
       <SigninContainer>
         <SigninWrapper>
-          <form onSubmit={handleSignin} style={{ padding: "20px" }}>
-            <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Sign In</h2>
-            
-            {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
-            
-            <SigninP>Email:</SigninP>
-            <SigninInput
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+          <div id="login"  >
+            <div  >
+              <h1 className="text-3xl text-center font-bold text-gray-800 mb-6">Login</h1>
   
-            <SigninP>Password:</SigninP>
-            <SigninInput
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+              <form onSubmit={handleSubmit}>
+                 
+                <SigninP>Email</SigninP>
+                  <SigninInput
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={data.email}
+                    onChange={handleOnChange}
+                    required
+                    className="w-full p-3 mt-1 bg-gray-100 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+               
   
-            <ButtonBasic type="submit" style={{ width: "100%", marginTop: "20px" }}>
-              Sign In
-            </ButtonBasic>
-            
-            <div style={{ textAlign: "center", marginTop: "15px" }}>
-              <Link to="/forgot_password" style={{ color: "#007bff", textDecoration: "none" }}>
-                Forgot your password?
-              </Link>
+                <div className="mb-6">
+                  <SigninP>Password</SigninP>
+                  <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md">
+                    <SigninInput
+                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      value={data.password}
+                      onChange={handleOnChange}
+                      required
+                      className="w-full p-3 bg-gray-100 border-none rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    />
+                    <span
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="cursor-pointer p-2 text-gray-600"
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                  </div>
+                </div>
+  
+                <div className="flex justify-end mb-4">
+                  <Link to="/forgot_password" className="text-sm text-blue-600 hover:underline">Forgot Password?</Link>
+                </div>
+  
+                <ButtonBasic
+  type="submit"
+  className="hover"
+>
+  Login
+</ButtonBasic>
 
-            </div>
-            <div style={{ textAlign: "center", marginTop: "15px" }}>
-            <p className="text-center mt-6 text-gray-600">
-              Have not Created Account ?   
-              <Link to="/signup" style={{ color: "#007bff", textDecoration: "none" }}>
-                  SignUp
-              </Link>
+              </form>
+  
+              <p className="text-center mt-6 text-gray-700">
+                Don't have an account? <Link to="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
               </p>
-              
             </div>
-          </form>
+          </div>
         </SigninWrapper>
       </SigninContainer>
     );
-  };
-  
-  export default SignInPage;
+    
+};
+
+export default Signin;

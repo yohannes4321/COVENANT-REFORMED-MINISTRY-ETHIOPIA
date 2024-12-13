@@ -8,7 +8,9 @@ import ForgetPassword from "./pages/forgetpassword";
 import Resetpasswordpage from "./pages/resetpassword";
 import AdminUpload from './pages/AdminUpload'; 
 import UserBooks  from './pages/UserBooks';
- 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 function App() {
   return (
     <Router>
@@ -17,11 +19,12 @@ function App() {
 <Route path="/signin" element={<SigninPage />} />
 <Route path="/signup" element={<SignupPage />} />
 <Route path="/forgot_password" element={<ForgetPassword/>} />
-<Route path="/reset_password" element={<Resetpasswordpage />} />
+<Route path="/reset_password/:id/:token" element={<Resetpasswordpage />} />
 <Route path="/admin/upload" element={<AdminUpload />} /> 
 <Route path="/books" element={<UserBooks />} />
 
       </Routes>
+      <ToastContainer />
     </Router>
   );
 }
