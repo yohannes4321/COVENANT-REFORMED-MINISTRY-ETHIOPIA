@@ -10,22 +10,22 @@ export const Sidebar = ({isOpen, toggle}) => {
             <SidebarWrapper>
                 <SidebarMenu>
                     
-                    <SidebarLink to="/ACTS" onClick={toggle}>
+                    <SidebarLink to="ACTS" onClick={toggle}>
                       ACTS
                     </SidebarLink>
-                    <SidebarLink to="/ACRFC" onClick={toggle}>
+                    <SidebarLink to="ACRFC" onClick={toggle}>
                        ACRFC
                     </SidebarLink>
-                    <SidebarLink to="/ACREM" onClick={toggle}>
+                    <SidebarLink to="ACREM" onClick={toggle}>
                         ACREM
                     </SidebarLink>
-                    <SidebarLink to="/ACRMC" onClick={toggle}>
+                    <SidebarLink to="ACRMC" onClick={toggle}>
                         ACRMC
                     </SidebarLink>
-                    <SidebarLink to="/about" onClick={toggle}>
+                    <SidebarLink to="about" onClick={toggle}>
                         About
                     </SidebarLink>
-                    <SidebarLink to="/signup" onClick={toggle}>
+                    <SidebarLink to="signup" onClick={toggle}>
                         Sign Up
                     </SidebarLink>
                      
@@ -37,9 +37,7 @@ export const Sidebar = ({isOpen, toggle}) => {
                     
                 </SideBtnWrap>
                 <SideBtnWrap>
-                    <SidebarRoute to="/signin" onClick={toggle}>
-                        Sign Up
-                    </SidebarRoute>
+                     
                     
                 </SideBtnWrap>
             </SidebarWrapper>

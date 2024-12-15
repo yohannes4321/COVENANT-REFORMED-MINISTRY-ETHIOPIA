@@ -1,7 +1,7 @@
 
 
 
-const backendapi = "http://localhost:8000";  
+const backendapi = "http://:8000";  
 ;
 
 const SummaryApi = {
