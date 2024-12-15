@@ -39,7 +39,7 @@ const Signin = () => {
       if (result.success) {
         toast.success(result.message);
         //fetchUserDetails(); // Fetch user details after login success
-        navigate('/'); // Redirect user to homepage or dashboard
+        navigate('/books'); // Redirect user to homepage or dashboard
       } else {
         toast.error(result.message);
       }

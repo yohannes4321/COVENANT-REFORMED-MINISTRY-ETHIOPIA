@@ -37,7 +37,7 @@ const SignUpPage = () => {
 
       if (response.status === 200 || response.status === 201) {
         toast.success('Signed up successfully');
-        navigate("/dashboard");
+        navigate("/books");
       }
     } catch (error) {
       if (error.response) {
