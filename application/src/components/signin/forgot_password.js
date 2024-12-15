@@ -33,7 +33,7 @@ const ForgetPassword = () => {
         e.preventDefault(); // Prevent the default form submission behavior
     
         try {
-            const dataRequest = await fetch('https://crms-website-backend.onrender.com/api/forget_password', {
+            const dataRequest = await fetch('http://localhost:8000/api/forget_password', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

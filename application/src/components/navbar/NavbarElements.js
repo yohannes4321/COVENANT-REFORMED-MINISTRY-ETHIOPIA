@@ -1,127 +1,132 @@
-import styled from 'styled-components';
-import { Link as LinkR } from 'react-router-dom';
-import { Link as LinkS } from 'react-scroll';
+import styled from "styled-components";
+import { Link as LinkR } from "react-router-dom";
+import { Link as LinkS } from "react-scroll";
 
 export const Nav = styled.nav`
-    background: ${({ scrollNav }) => (scrollNav ? '#ADD8E6' : 'transparent')};
-    height: 80px;
-    margin-top: -80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem; 
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    transition: all 0.3s ease-in-out;
-a
-    @media screen and (max-width: 960px) {
-        transition: 0.8s all ease;
-    }
+  background: ${({ scrollNav }) => (scrollNav ? "#ADD8E6" : "transparent")};
+  height: 80px;
+  margin-top: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 960px) {
+    transition: 0.8s all ease;
+  }
 `;
 
 export const NavbarContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-    z-index: 1;
-    width: 100%;
-    padding: 0 24px;
-    max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  padding: 0 24px;
+  max-width: 1100px;
 `;
 
 export const NavLogo = styled(LinkR)`
-    color: #ffffff;
-    justify-self: flex-start;
-    cursor: pointer;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    margin-left: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: all ease 0.2s;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all ease 0.2s;
 
-    &:hover {
-        color: #FFA500; /* Orange hover effect */
-    }
+  &:hover {
+    color: #ffa500;
+  }
 `;
 
 export const MobileIcon = styled.div`
-    display: none;
+  display: none;
 
-    @media screen and (max-width: 768px) {
-        display: block;
-        margin-top: auto;
-        margin-bottom: auto;
-        font-size: 1.8rem;
-        cursor: pointer;
-        color: #ffffff;
-    }
+  @media screen and (max-width: 768px) {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ffffff;
+  }
 `;
 
 export const NavMenu = styled.ul`
-    display: flex;
-    align-items: center;
-    list-style: none;
-    text-align: center;
-    margin-right: -22px;
-    height: 80px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  margin-right: auto;
 
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavItem = styled.li`
-    height: 80px;
+  height: 80px;
 `;
 
 export const NavLinks = styled(LinkS)`
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 0 1rem;
-    height: 100%;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
-    &.active {
-        border-bottom: 3px solid #FFA500;
-    }
+  &.active {
+    border-bottom: 3px solid #ffa500;
+  }
 
-    &:hover {
-        color: #FFA500; /* Orange hover effect */
-    }
+  &:hover {
+    color: #ffa500;
+  }
 `;
 
 export const NavBtn = styled.nav`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const NavBtnLeft = styled(NavBtn)`
+  margin-right: auto;
+`;
+
+export const NavBtnRight = styled(NavBtn)`
+  margin-left: auto;
 `;
 
 export const NavBtnLink = styled(LinkR)`
-    border-radius: 50px;
-    text-decoration: none;
-    background: linear-gradient(90deg, #FFD700, #FFA500); /* Yellow to orange gradient */
-    white-space: nowrap;
-    padding: 10px 22px;
-    color: #010606;
-    font-size: 1rem;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    font-weight: 900;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #ffd700, #ffa500);
+  white-space: nowrap;
+  padding: 10px 22px;
+  color: #010606;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
-    &:hover {
-        background: #ffffff; /* White background on hover */
-        color: #FFA500; /* Orange text on hover */
-        transition: all 0.2s ease-in-out;
-    }
+  &:hover {
+    background: #ffffff;
+    color: #ffa500;
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
 `;

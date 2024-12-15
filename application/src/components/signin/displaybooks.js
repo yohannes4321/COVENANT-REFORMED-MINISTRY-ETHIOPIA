@@ -10,7 +10,7 @@ const BookDisplay = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('https://crms-website-backend.onrender.com/books');
+        const response = await axios.get('http://localhost:8000/books');
         if (response.data) {
           setBooks(response.data);
         } else {
@@ -19,7 +19,7 @@ const BookDisplay = () => {
       } catch (error) {
         console.error("Error fetching books:", error);
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     };
     fetchBooks();
@@ -40,7 +40,7 @@ const BookDisplay = () => {
 
   const handleDownload = async (bookId) => {
     try {
-      const response = await axios.get(`https://crms-website-backend.onrender.com/download/${bookId}`);
+      const response = await axios.get(`http://localhost:8000/download/${bookId}`);
       if (response.data.downloadUrl) {
         window.open(response.data.downloadUrl, '_blank');
       } else {
