@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Navbar } from '../components/navbar';
-import { Sidebar } from '../components/sidebar';
-import Footer from '../components/footer';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+ 
+import Footer from "../components/footer";
+ 
+import { Navbar } from "./../components/navbar/index";
+import { Sidebar } from "./../components/sidebar/index";
+
+
+
+
+
+
+
+import {
+  SigninContainer,
+  SigninWrapper,
+  SigninP,
+  SigninInput,
+} from "../components/signin/SigninElements";
+import { ButtonBasic } from "../components/ButtonElements";
 const AdminContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,6 +49,14 @@ const UploadInput = styled.input`
   border-radius: 5px;
 `;
 
+const UploadTextarea = styled.textarea`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  min-height: 100px;
+`;
+
 const UploadButton = styled.button`
   padding: 10px;
   background-color: #007bff;
@@ -49,7 +73,7 @@ const AdminUpload = () => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+  const [url, setUrl] = useState('');
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -60,8 +84,8 @@ const AdminUpload = () => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('fileName', fileName);
+    formData.append('url', url);
     formData.append('description', description);
-    formData.append('category', category);
 
     try {
       const response = await axios.post('http://localhost:8000/upload', formData, {
@@ -70,47 +94,55 @@ const AdminUpload = () => {
         },
       });
 
-      if (response.data.statusCode === 200) {
-        toast.success(response.data.message);
-        setFile(null);
-        setFileName('');
-        setDescription('');
-        setCategory('');
-      } else {
-        toast.error(response.data.message);
-      }
+      toast.success(response.data.message || 'Upload successful');
+      setFile(null);
+      setFileName('');
+      setDescription('');
+      setUrl('');
     } catch (error) {
-      toast.error('Error uploading the file');
+      toast.error(error.response?.data?.message || 'Error uploading the file');
     }
   };
 
   return (
     <>
-      <Sidebar />
+   <Sidebar   />
       <Navbar />
       <AdminContainer>
-        <h2>Admin Upload</h2>
-        <UploadForm onSubmit={handleSubmit}>
-          <label>File</label>
-          <UploadInput type="file" onChange={handleFileChange} />
-          <label>File Name</label>
-          <UploadInput
-            type="text"
-            value={fileName}
-            onChange={(e) => setFileName(e.target.value)}
-          />
-          <label>Description</label>
-          <UploadInput
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-         
-          <UploadButton type="submit">Upload</UploadButton>
-        </UploadForm>
-      </AdminContainer>
-      <Footer />
-    </>
+  <h2>Admin Upload</h2>
+  <UploadForm onSubmit={handleSubmit}>
+    <label>Choose Photo</label>
+    <UploadInput type="file" onChange={handleFileChange} />
+
+    <label>File Name</label>
+    <UploadInput
+      type="text"
+      value={fileName}
+      onChange={(e) => setFileName(e.target.value)}
+      placeholder="Enter a file name"
+    />
+
+    <label>Google Drive URL</label>
+    <UploadInput
+      type="text"
+      value={url}
+      onChange={(e) => setUrl(e.target.value)}
+      placeholder="Enter a Google Drive link"
+    />
+
+    <label>Description</label>
+    <UploadTextarea
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      placeholder="Enter a detailed description"
+    />
+
+    <UploadButton type="submit">Upload</UploadButton>
+  </UploadForm>
+</AdminContainer>
+<Footer/> 
+
+</>
   );
 };
 
