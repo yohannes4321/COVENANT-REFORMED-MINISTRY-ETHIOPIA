@@ -52,6 +52,7 @@ const BookDisplay = () => {
   };
 
   return (
+    <>
     <div className="book-container">
       <div className="search-bar-container">
         <FaSearch className="search-icon" />

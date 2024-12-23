@@ -14,6 +14,7 @@ import {
   NavBtnLink,
 } from "./NavbarElements";
 import "./../../App.css";
+import "../../images/logo (6).jpg"
 
 export const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
@@ -34,9 +35,7 @@ export const Navbar = ({ toggle }) => {
   return (
     <Nav scrollNav={scrollNav}>
       <NavbarContainer>
-        <NavLogo to="/">
-          <h1 className="logo-text">CRME</h1>
-        </NavLogo>
+         
         <MobileIcon onClick={toggle}>
           <FaBars />
         </MobileIcon>

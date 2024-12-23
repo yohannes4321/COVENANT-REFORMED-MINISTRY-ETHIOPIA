@@ -1,37 +1,22 @@
-import React, { useState } from "react";
-import {
-  HeroContainer,
-  HeroBg,
-  VideoBg,
-  HeroContent,
-  HeroBtnWrapper,
-  ArrowForward,
-  ArrowRight,
-} from "./HeroElements";
- 
-import Video from "../../videos/bgvideo.mp4";
-import "../../App.css";
+import React from "react";
+import { HeroContainer, HeroContent, HeroBtnWrapper, HeroBg } from "./HeroElements";
+import logo from "../../images/logo (6).jpg"; // Import the image
 
 const HeroSection = () => {
-  const [hover, setHover] = useState(false);
-
-  const onHover = () => {
-    setHover(!hover);
-  };
-
   return (
     <HeroContainer>
+      {/* Add the logo image here */}
       <HeroBg>
-        <VideoBg autoPlay loop muted src={Video} type="video/mp4" />
+        <img src={logo} alt="Hero Background" className="hero-image" />
       </HeroBg>
       <HeroContent>
-        <h1 className="h1-hero">COVENANT REFORMED MINISTRY- ETHIOPIA</h1>
+        <h1 className="h1-hero">
+          COVENANT REFORMED MINISTRY ETHIOPIA
+        </h1>
         <p className="hero-text">
-        Church revitalization
+          Church revitalization
         </p>
-        <HeroBtnWrapper>
-          
-        </HeroBtnWrapper>
+         
       </HeroContent>
     </HeroContainer>
   );

@@ -4,8 +4,15 @@ import InfoSection from "../components/infoSection";
 import { Navbar } from "./../components/navbar";
 import { Sidebar } from "./../components/sidebar";
 
-import Image1 from "../images/design-notes.svg";
-import Image2 from "../images/space.svg";
+import Image1 from "../images/photo_2024-12-22_21-29-00 - Copy.jpg";
+import Image2 from "../images/photo_2024-12-22_21-29-09 - Copy.jpg";
+import Image3 from "../images/photo_2024-12-22_21-29-14 - Copy.jpg";
+import Image4 from "../images/photo_2024-12-22_21-29-37 - Copy.jpg";
+import Image5 from "../images/photo_2024-12-22_21-42-28.jpg";
+import Image6 from "../images/photo_2024-12-22_21-29-58 - Copy.jpg";
+import Image7 from "../images/photo_2024-12-22_21-30-30 - Copy.jpg";
+ 
+import Image8 from "../images/photo_2024-12-22_21-42-01.jpg";
 import InfoSectionLight from "../components/infoSectionLight";
 import Services from "../components/services";
 import Footer from "../components/footer";
@@ -41,7 +48,7 @@ Addis Covenant Reformed Compassion Ministry
         btnText="Sign In"
       />
       <InfoSection
-        image={Image1}
+        image={Image2}
         id="ACTS"
         subtitle="Preparing Christians for leadership"
         title="ADDIS COVENANT THEOLOGICAL SEMINARY"
@@ -50,7 +57,7 @@ Addis Covenant Reformed Compassion Ministry
       />
        
       <InfoSectionLight
-        image={Image2}
+        image={Image3}
         id="ACRFC"
         subtitle="ACRFC"
         title="ADDIS COVENANT REFORMED FELLOWSHIP CHURCHES"
@@ -58,7 +65,7 @@ Addis Covenant Reformed Compassion Ministry
         btnText="Explore"
       />0
       <InfoSectionLight
-        image={Image2}
+        image={Image4}
         id="ACREM"
         subtitle="ACREM"
         title="ADDIS COVENANT REMORED EQUPPING MINISTRY"
@@ -67,7 +74,7 @@ Addis Covenant Reformed Compassion Ministry
       />
       <Services />
       <InfoSectionLight
-        image={Image1}
+        image={Image5}
         id="ACPMM"
         subtitle="ACPMM"
         title="ADDIS COVENANT PUBLICATION AND MEDIA MINISTRY"
@@ -75,7 +82,7 @@ Addis Covenant Reformed Compassion Ministry
         btnText="Read more"
       />
       <InfoSectionLight
-         
+         image={Image6}
         id="ACRCM"
         subtitle="ACRCM"
         title="ADDIS COVENANT REFOMED COMPASSION MINISTRY"
@@ -84,14 +91,14 @@ Apart from academic and practical training, Addis Covenant Reformed ministry is 
          
       />
             <InfoSectionLight
-        image={Image1}
+        image={Image7}
         id=""about
          
         title="ADDIS COVENANT PUBLICATION AND MEDIA MINISTRY"
         text="Gmail - acts23mints@gmail.com +251-985671368 +251913146794 +251911884916"
       />
       <InfoSectionLight
-        image={Image2}
+        image={Image8}
         id="Donate"
         subtitle="Commercial Bank Of Ethiopia Account 1000---"
         title="Donate "
