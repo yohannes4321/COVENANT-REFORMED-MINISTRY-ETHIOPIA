@@ -4,15 +4,14 @@ import InfoSection from "../components/infoSection";
 import { Navbar } from "./../components/navbar";
 import { Sidebar } from "./../components/sidebar";
 
-import Image1 from "../images/photo_2024-12-22_21-29-00 - Copy.jpg";
-import Image2 from "../images/photo_2024-12-22_21-29-09 - Copy.jpg";
-import Image3 from "../images/photo_2024-12-22_21-29-14 - Copy.jpg";
-import Image4 from "../images/photo_2024-12-22_21-29-37 - Copy.jpg";
-import Image5 from "../images/photo_2024-12-22_21-42-28.jpg";
-import Image6 from "../images/photo_2024-12-22_21-29-58 - Copy.jpg";
+import Image1 from "../images/photo_2024-12-16_16-45-17.jpg"
+import Image2 from "../images/photo_2024-12-22_21-29-00 - Copy.jpg";
+import Image3 from "../images/photo_2024-12-16_17-11-29.jpg";
+import Image4 from "../images/photo_2024-12-16_16-43-44.jpg";
+import Image5 from "../images/photo_2024-12-23_16-37-39.jpg";
+import Image6 from "../images/photo_2024-12-22_21-29-09 - Copy.jpg";
 import Image7 from "../images/photo_2024-12-22_21-30-30 - Copy.jpg";
- 
-import Image8 from "../images/photo_2024-12-22_21-42-01.jpg";
+import Image8 from "../images/logo (6).jpg";
 import InfoSectionLight from "../components/infoSectionLight";
 import Services from "../components/services";
 import Footer from "../components/footer";
@@ -90,17 +89,11 @@ Addis Covenant Reformed Compassion Ministry
 Apart from academic and practical training, Addis Covenant Reformed ministry is also involved in mercy works to support children in need. This includes providing assistance with food, education, clothing, and basic after-school skills training."
          
       />
-            <InfoSectionLight
-        image={Image7}
-        id=""about
-         
-        title="ADDIS COVENANT PUBLICATION AND MEDIA MINISTRY"
-        text="Gmail - acts23mints@gmail.com +251-985671368 +251913146794 +251911884916"
-      />
+             
       <InfoSectionLight
         image={Image8}
         id="Donate"
-        subtitle="Commercial Bank Of Ethiopia Account 1000---"
+        subtitle="MINTS Bank Address"
         title="Donate "
         text=" Your donations support the COVENANT REFORMED MINISTRY- ETHIOPIA mission to spread the word of God and empower communities through education and resources.
         "

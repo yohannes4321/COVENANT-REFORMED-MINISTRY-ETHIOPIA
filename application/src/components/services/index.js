@@ -1,8 +1,8 @@
 import React from "react";
 import {ServicesContainer, ServicesH1, ServicesWrapper, ServicesCard, ServicesIcon, ServicesH2, ServicesP} from "./ServicesElements";
-import Icon1 from "../../images/photo_2024-12-22_21-29-58 - Copy.jpg";
-import Icon2 from "../../images/photo_2024-12-22_21-29-09 - Copy.jpg";
-import Icon3 from "../../images/photo_2024-12-22_21-29-37 - Copy.jpg";
+import Icon1 from "../../images/final.jpg";
+import Icon2 from "../../images/photo_2024-12-16_10-31-06.jpg";
+import Icon3 from "../../images/photo_2024-12-16_10-31-06.jpg";
 
 const Services = () => {
   return (
@@ -17,22 +17,34 @@ const Services = () => {
             </a>
           </ServicesH2>
         </ServicesCard>
+
         <ServicesCard>
           <ServicesIcon src={Icon2} />
+          <ServicesH2>
+            <a href="https://ps78teachers.org" target="_blank" rel="noopener noreferrer">
+            PS78 Teachers
+            </a>
+          </ServicesH2>
+        </ServicesCard>
+
+
+
+
+
+
+
+
+
+
+        <ServicesCard>
+          <ServicesIcon src={Icon3} />
           <ServicesH2>
             <a href="https://worldwitness.org/project/seed-ministry" target="_blank" rel="noopener noreferrer">
               SEED Ministry
             </a>
           </ServicesH2>
         </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon src={Icon3} />
-          <ServicesH2>
-            <a href="https://thirdmillinstitute.org/" target="_blank" rel="noopener noreferrer">
-              Thirdmill Institute
-            </a>
-          </ServicesH2>
-        </ServicesCard>
+        
       </ServicesWrapper>
     </ServicesContainer>
   );
