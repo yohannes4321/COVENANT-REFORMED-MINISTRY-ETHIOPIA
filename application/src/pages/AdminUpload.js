@@ -88,7 +88,7 @@ const AdminUpload = () => {
     formData.append('description', description);
 
     try {
-      const response = await axios.post('https://crms-website-backend.onrender.com/upload', formData, {
+      const response = await axios.post('https://crms-website-backend-erc2.onrender.com/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

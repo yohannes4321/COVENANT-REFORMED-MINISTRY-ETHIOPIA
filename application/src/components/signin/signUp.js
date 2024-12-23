@@ -29,7 +29,7 @@ const SignUpPage = () => {
     }
 
     try {
-      const response = await axios.post("https://crms-website-backend.onrender.com/api/signup", {
+      const response = await axios.post("https://crms-website-backend-erc2.onrender.com/api/signup", {
         fullname,
         email,
         password,

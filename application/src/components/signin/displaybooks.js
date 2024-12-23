@@ -10,7 +10,7 @@ const BookDisplay = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('https://crms-website-backend.onrender.com/books');
+        const response = await axios.get('https://crms-website-backend-erc2.onrender.com/books');
         if (response.data) {
           setBooks(response.data);
         } else {
@@ -40,7 +40,7 @@ const BookDisplay = () => {
 
   const handleDownload = async (bookId) => {
     try {
-      const response = await axios.get(`https://crms-website-backend.onrender.com/download/${bookId}`);
+      const response = await axios.get(`https://crms-website-backend-erc2.onrender.com/download/${bookId}`);
       if (response.data.downloadUrl) {
         window.open(response.data.downloadUrl, '_blank');
       } else {
