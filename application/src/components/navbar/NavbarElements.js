@@ -20,7 +20,6 @@ export const Nav = styled.nav`
   }
 `;
 
-
 export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,9 +37,19 @@ export const NavLogo = styled(LinkR)`
   text-decoration: none;
   cursor: pointer;
   transition: all ease 0.2s;
+  display: flex;
+  align-items: center;
 
   &:hover {
     color: #ffa500;
+  }
+
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%; /* Make the logo circular */
+    object-fit: cover; /* Ensure the logo fits well */
+    margin-right: 10px;
   }
 `;
 
@@ -106,6 +115,7 @@ export const NavBtnLeft = styled(NavBtn)`
 export const NavBtnRight = styled(NavBtn)`
   margin-left: auto;
 `;
+
 export const NavBtnLink = styled(LinkR)`
   border-radius: 50px;
   background: linear-gradient(90deg, #ffd700, #ffa500);

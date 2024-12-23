@@ -13,8 +13,7 @@ import {
   NavBtnRight,
   NavBtnLink,
 } from "./NavbarElements";
-import "./../../App.css";
-import "../../images/logo (6).jpg"
+import logo from "../../images/logo (6).jpg"; // Import the image
 
 export const Navbar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
@@ -35,7 +34,9 @@ export const Navbar = ({ toggle }) => {
   return (
     <Nav scrollNav={scrollNav}>
       <NavbarContainer>
-         
+        <NavLogo to="/">
+          <img src={logo} alt="Logo" />
+        </NavLogo>
         <MobileIcon onClick={toggle}>
           <FaBars />
         </MobileIcon>

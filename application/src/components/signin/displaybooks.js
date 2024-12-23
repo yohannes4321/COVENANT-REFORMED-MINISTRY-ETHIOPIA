@@ -10,7 +10,7 @@ const BookDisplay = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/books');
+        const response = await axios.get('https://crms-website-backend.onrender.com/books');
         if (response.data) {
           setBooks(response.data);
         } else {
@@ -19,7 +19,7 @@ const BookDisplay = () => {
       } catch (error) {
         console.error("Error fetching books:", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     };
     fetchBooks();
@@ -40,7 +40,7 @@ const BookDisplay = () => {
 
   const handleDownload = async (bookId) => {
     try {
-      const response = await axios.get(`http://localhost:8000/download/${bookId}`);
+      const response = await axios.get(`https://crms-website-backend.onrender.com/download/${bookId}`);
       if (response.data.downloadUrl) {
         window.open(response.data.downloadUrl, '_blank');
       } else {
@@ -52,7 +52,6 @@ const BookDisplay = () => {
   };
 
   return (
-    <>
     <div className="book-container">
       <div className="search-bar-container">
         <FaSearch className="search-icon" />
@@ -72,7 +71,7 @@ const BookDisplay = () => {
           <div className="book-list">
             {filteredBooks.map((book) => (
               <div className="book-card" key={book._id}>
-                <div className="book-image">{book.imageurl}</div>
+                <div className="book-image"><img src={book.imageurl} alt={book.filename} /></div>
                 <h3 className="book-title">{book.filename}</h3>
                 <p className="book-description">{book.description}</p>
                 <button className="download-btn" onClick={() => handleDownload(book._id)}>
