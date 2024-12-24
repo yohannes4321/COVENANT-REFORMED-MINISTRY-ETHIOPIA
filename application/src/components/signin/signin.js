@@ -12,6 +12,7 @@ import {
   SigninInput,
 } from "./SigninElements";
 import { ButtonBasic } from "../ButtonElements";
+
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({ email: "", password: "" });
@@ -34,13 +35,12 @@ const Signin = () => {
         credentials: 'include', // If you're using cookies for authentication
         body: JSON.stringify(data), // Send email and password in body
       });
-      
 
       const result = await response.json();
       if (result.success) {
-        toast.success(result.message);
+        toast.success(result.message, { type: "success" });
         //fetchUserDetails(); // Fetch user details after login success
-        navigate('/books'); // Redirect user to homepage or dashboard
+        navigate('/books'); // Redirect user to /books
       } else {
         toast.error(result.message);
       }
@@ -52,70 +52,64 @@ const Signin = () => {
   };
 
   return (
-    
-      <SigninContainer>
-        <SigninWrapper>
-          <div id="login"  >
-            <div  >
-              <h1 className="text-3xl text-center font-bold text-gray-800 mb-6">Login</h1>
-  
-              <form onSubmit={handleSubmit}>
-                 
-                <SigninP>Email</SigninP>
+    <SigninContainer>
+      <SigninWrapper>
+        <div id="login">
+          <div>
+            <h1 className="text-3xl text-center font-bold text-gray-800 mb-6">Login</h1>
+
+            <form onSubmit={handleSubmit}>
+              <SigninP>Email</SigninP>
+              <SigninInput
+                type="email"
+                id="email"
+                name="email"
+                value={data.email}
+                onChange={handleOnChange}
+                required
+                className="w-full p-3 mt-1 bg-gray-100 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+              <div className="mb-6">
+                <SigninP>Password</SigninP>
+                <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md">
                   <SigninInput
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={data.email}
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={data.password}
                     onChange={handleOnChange}
                     required
-                    className="w-full p-3 mt-1 bg-gray-100 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full p-3 bg-gray-100 border-none rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
-               
-  
-                <div className="mb-6">
-                  <SigninP>Password</SigninP>
-                  <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md">
-                    <SigninInput
-                      type={showPassword ? "text" : "password"}
-                      id="password"
-                      name="password"
-                      value={data.password}
-                      onChange={handleOnChange}
-                      required
-                      className="w-full p-3 bg-gray-100 border-none rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    />
-                    <span
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="cursor-pointer p-2 text-gray-600"
-                    >
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </span>
-                  </div>
+                  <span
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="cursor-pointer p-2 text-gray-600"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
                 </div>
-  
-                <div className="flex justify-end mb-4">
-                  <Link to="/forgot_password" className="text-sm text-blue-600 hover:underline">Forgot Password?</Link>
-                </div>
-  
-                <ButtonBasic
-  type="submit"
-  className="hover"
->
-  Login
-</ButtonBasic>
+              </div>
 
-              </form>
-  
-              <p className="text-center mt-6 text-gray-700">
-                Don't have an account? <Link to="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
-              </p>
-            </div>
+              <div className="flex justify-end mb-4">
+                <Link to="/forgot_password" className="text-sm text-blue-600 hover:underline">Forgot Password?</Link>
+              </div>
+
+              <ButtonBasic
+                type="submit"
+                className="hover"
+              >
+                Login
+              </ButtonBasic>
+            </form>
+
+            <p className="text-center mt-6 text-gray-700">
+              Don't have an account? <Link to="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
+            </p>
           </div>
-        </SigninWrapper>
-      </SigninContainer>
-    );
-    
+        </div>
+      </SigninWrapper>
+    </SigninContainer>
+  );
 };
 
 export default Signin;
