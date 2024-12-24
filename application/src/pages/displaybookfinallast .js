@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Footer from "../components/footer";
-import  ResetPassword from "../components/signin/resetpassword";
+import BookDisplay from "../pages/displaybookfinal";
 import { Navbar } from "./../components/navbar";
 import { Sidebar } from "./../components/sidebar";
 
-const SigninPage = () => {
+const ForgetPassword = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -15,10 +15,10 @@ const SigninPage = () => {
     <>
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
-      <ResetPassword />
+      <BookDisplay />
       <Footer />
     </>
   );
 };
 
-export default SigninPage;
+export default ForgetPassword;
