@@ -29,11 +29,12 @@ const Signin = () => {
     e.preventDefault();
     try {
       const response = await fetch("https://crms-website-backend-erc2.onrender.com/api/signin", {
-        method: 'POST', // Should be 'POST'
+        method: 'POST',
         headers: { "Content-Type": "application/json" },
         credentials: 'include', // If you're using cookies for authentication
         body: JSON.stringify(data), // Send email and password in body
       });
+      
 
       const result = await response.json();
       if (result.success) {
