@@ -31,13 +31,16 @@ const BookDisplay = () => {
     setSearchQuery(event.target.value || '');
   };
 
-  const filteredBooks = books.filter((book) => {
-    const regex = new RegExp(searchQuery, 'i');
-    return (
-      regex.test(book.filename) ||
-      (book.description && regex.test(book.description))
-    );
-  });
+  const filteredBooks = Array.isArray(books)
+  ? books.filter((book) => {
+      const regex = new RegExp(searchQuery, 'i');
+      return (
+        regex.test(book.filename) ||
+        (book.description && regex.test(book.description))
+      );
+    })
+  : [];
+
 
   const handleDownload = async (bookId) => {
     try {
