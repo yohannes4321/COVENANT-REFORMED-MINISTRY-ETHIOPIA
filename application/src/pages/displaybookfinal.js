@@ -10,9 +10,8 @@ const BookDisplay = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(
-          'https://crms-website-backend.onrender.com/books'
-        );
+        // Correct the API endpoint to fetch books from the backend.
+        const response = await axios.get('http://localhost:8000/books'); 
         if (response.data) {
           setBooks(response.data);
         } else {
@@ -33,31 +32,29 @@ const BookDisplay = () => {
 
   const filteredBooks = Array.isArray(books)
     ? books.filter((book) => {
+        // Ensure properties exist before testing with regex to prevent errors.
+        const description = book.description || '';
+        const filename = book.filename || '';
         const regex = new RegExp(searchQuery, 'i');
-        return (
-          regex.test(book.filename) ||
-          (book.description && regex.test(book.description))
-        );
+        return regex.test(filename) || regex.test(description);
       })
     : [];
 
-  const handleDownload = async (bookId) => {
-    try {
-      const response = await axios.get(
-        `https://crms-website-backend.onrender.com/localhost:/download/${bookId}`
-      );
-      if (response.data.downloadUrl) {
-        window.open(response.data.downloadUrl, '_blank');
-      } else {
-        console.error('Download URL not received from backend');
-      }
-    } catch (error) {
-      console.error('Error downloading book:', error);
-    }
-  };
+const handleDownload = (bookId) => {
+  window.open(`http://localhost:8000/download/${bookId}`, "_blank");
+};
+
 
   if (loading) {
-    return <div style={{ textAlign: 'center', padding: '20px' }}>Loading books...</div>;
+    return <div style={styles.loading}>Loading books...</div>;
+  }
+
+  if (filteredBooks.length === 0 && searchQuery) {
+    return <div style={styles.noResults}>No books found for "{searchQuery}".</div>;
+  }
+  
+  if (filteredBooks.length === 0 && !searchQuery) {
+    return <div style={styles.noResults}>No books available. Please check the backend.</div>;
   }
 
   return (
@@ -75,10 +72,11 @@ const BookDisplay = () => {
       <div style={styles.bookCarousel}>
         {filteredBooks.map((book) => (
           <div key={book._id} style={styles.bookCard}>
-            <img src={book.imageurl} alt={book.filename} style={styles.bookImage} />
+            {/* Use the uploadedUrl for the image source. The filename can be the alt text. */}
+            <img src={book.uploadedUrl} alt={book.filename || 'Book cover'} style={styles.bookImage} />
             <div style={styles.bookDetails}>
-              <h3 style={styles.bookTitle}>{book.filename}</h3>
-              <p style={styles.bookDescription}>{book.description}</p>
+              <h3 style={styles.bookTitle}>{book.filename || 'Untitled'}</h3>
+              <p style={styles.bookDescription}>{book.description || 'No description available.'}</p>
               <button
                 style={styles.downloadButton}
                 onClick={() => handleDownload(book._id)}
@@ -93,78 +91,118 @@ const BookDisplay = () => {
   );
 };
 
+// CSS styles remain mostly the same but with minor additions for hover effects.
 const styles = {
   bookDisplayContainer: {
     padding: '20px',
     textAlign: 'center',
     backgroundColor: '#f8f9fa',
+    minHeight: '100vh',
+    fontFamily: 'Arial, sans-serif',
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '20px',
+    marginBottom: '30px',
   },
   homeLink: {
     fontSize: '18px',
     color: '#007bff',
     textDecoration: 'none',
+    fontWeight: 'bold',
   },
   searchBar: {
-    padding: '10px',
+    padding: '12px 15px',
     width: '60%',
     border: '1px solid #ccc',
-    borderRadius: '5px',
+    borderRadius: '25px',
     fontSize: '16px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   },
   bookCarousel: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    gap: '20px',
+    gap: '25px',
+    maxWidth: '1200px',
+    margin: '0 auto',
   },
   bookCard: {
     backgroundColor: 'white',
-    border: '1px solid #ddd',
-    borderRadius: '10px',
-    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    border: '1px solid #e0e0e0',
+    borderRadius: '15px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
     overflow: 'hidden',
-    width: '250px',
-    transition: 'transform 0.3s ease',
+    width: '280px',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    cursor: 'pointer',
   },
   bookCardHover: {
-    transform: 'scale(1.05)',
+    transform: 'translateY(-5px)',
+    boxShadow: '0 6px 15px rgba(0, 0, 0, 0.15)',
   },
   bookImage: {
     width: '100%',
-    height: '200px',
+    height: '250px',
     objectFit: 'cover',
+    borderBottom: '1px solid #e0e0e0',
   },
   bookDetails: {
     padding: '15px',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   bookTitle: {
-    fontSize: '18px',
+    fontSize: '20px',
     color: '#333',
-    margin: '10px 0',
+    margin: '0 0 10px',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
   bookDescription: {
     fontSize: '14px',
-    color: '#555',
+    color: '#666',
     marginBottom: '15px',
+    maxHeight: '4.2em', // Limit description to 3 lines
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    lineHeight: '1.4em',
   },
   downloadButton: {
     backgroundColor: '#007bff',
     color: 'white',
-    padding: '10px 15px',
+    padding: '12px 20px',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '25px',
     cursor: 'pointer',
-    fontSize: '14px',
+    fontSize: '15px',
+    fontWeight: 'bold',
+    transition: 'background-color 0.3s ease, transform 0.2s ease',
+    marginTop: 'auto',
   },
   downloadButtonHover: {
     backgroundColor: '#0056b3',
+    transform: 'scale(1.02)',
   },
+  loading: {
+    textAlign: 'center',
+    padding: '50px',
+    fontSize: '20px',
+    color: '#555',
+  },
+  noResults: {
+    textAlign: 'center',
+    padding: '50px',
+    fontSize: '20px',
+    color: '#888',
+  }
 };
 
 export default BookDisplay;

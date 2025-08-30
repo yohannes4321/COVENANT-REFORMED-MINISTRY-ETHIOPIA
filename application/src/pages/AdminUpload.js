@@ -88,12 +88,13 @@ const AdminUpload = () => {
     formData.append('description', description);
 
     try {
-      const response = await axios.post('https://crms-website-backend.onrender.com/upload', formData, {
+      const response = await axios.post('http://localhost:8000/upload', formData, {
+
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
+      console.log("responces",response)
       toast.success(response.data.message || 'Upload successful');
       setFile(null);
       setFileName('');

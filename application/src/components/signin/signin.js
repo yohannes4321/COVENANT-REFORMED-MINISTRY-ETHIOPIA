@@ -29,10 +29,10 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://crms-website-backend.onrender.com/api/signin", {
+      const response = await fetch("http://localhost:8000/api/signin", {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        credentials: 'include', // If you're using cookies for authentication
+        // credentials: 'include', // If you're using cookies for authentication
         body: JSON.stringify(data), // Send email and password in body
       });
 

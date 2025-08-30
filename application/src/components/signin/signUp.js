@@ -29,7 +29,7 @@ const SignUpPage = () => {
     }
 
     try {
-      const response = await axios.post("https://crms-website-backend.onrender.com/api/signup", {
+      const response = await axios.post("http://localhost:8000/api/signup", {
         fullname,
         email,
         password,
@@ -40,15 +40,11 @@ const SignUpPage = () => {
         navigate("/books");
       }
     } catch (error) {
-      if (error.response) {
-        // Error from server
-        setError(error.response.data.message || "Signup failed.");
-      } else {
-        // Network error
-        setError("Unable to connect to the server.");
-      }
-      toast.error(error.response.data.message || "Signup failed.");
-    }
+  const message = error.response?.data?.message || "Unable to connect to the server.";
+  setError(message);
+  toast.error(message);
+}
+
   };
 
   return (
