@@ -11,7 +11,7 @@ const BookDisplay = () => {
     const fetchBooks = async () => {
       try {
         // Correct the API endpoint to fetch books from the backend.
-        const response = await axios.get('http://localhost:8000/books'); 
+        const response = await axios.get('https://crms-website-backend.onrender.com/books'); 
         if (response.data) {
           setBooks(response.data);
         } else {
@@ -41,7 +41,7 @@ const BookDisplay = () => {
     : [];
 
 const handleDownload = (bookId) => {
-  window.open(`http://localhost:8000/download/${bookId}`, "_blank");
+  window.open(`https://crms-website-backend.onrender.com/download/${bookId}`, "_blank");
 };
 
 
