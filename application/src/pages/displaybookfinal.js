@@ -44,7 +44,7 @@ const BookDisplay = () => {
   const handleDownload = async (bookId) => {
     try {
       const response = await axios.get(
-        `https://crms-website-backend.onrender.com/download/${bookId}`
+        `https://crms-website-backend.onrender.com/localhost:/download/${bookId}`
       );
       if (response.data.downloadUrl) {
         window.open(response.data.downloadUrl, '_blank');

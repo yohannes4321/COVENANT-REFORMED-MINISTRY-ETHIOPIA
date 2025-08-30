@@ -46,8 +46,8 @@ const Signin = () => {
       }
     } catch (error) {
       console.error("Error during login:", error);
-      toast.error("Something went wrong!");
-      toast.error(error)
+      // toast.error("Something went wrong!");
+      toast.error(error.message)
     }
   };
 

@@ -100,7 +100,7 @@ const AdminUpload = () => {
       setDescription('');
       setUrl('');
     } catch (error) {
-      toast.error(error);
+      toast.error(error.response?.data?.message || 'Error uploading the file');
     }
   };
 
